@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="10"
+    tools:context=".ViewNote">
+
+    <EditText
+        android:id="@+id/noteTitle"
+        android:hint="Enter your not title here.."
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="10dp"
+        android:focusable="false"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        android:layout_weight="1"/>
+
+    <com.rmproduct.mobilenote.LinedEditText
+        android:id="@+id/noteBody"
+        android:layout_weight="8"
+        android:hint="Write here to note.."
+        android:lines="15"
+        android:lineHeight="30dp"
+        android:focusable="false"
+        android:layout_margin="10dp"
+        android:gravity="top"
+        android:layout_width="match_parent"
+        android:layout_height="0dp" />
+
+</LinearLayout>

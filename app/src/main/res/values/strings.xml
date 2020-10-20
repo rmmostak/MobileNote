@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Mobile Note</string>
+    <string name="pass_note">PassNote</string>
+    <string name="encrypted_note_title">Encrypted Note</string>
+</resources>
