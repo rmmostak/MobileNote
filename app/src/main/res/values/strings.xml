@@ -2,4 +2,10 @@
     <string name="app_name">Mobile Note</string>
     <string name="pass_note">PassNote</string>
     <string name="encrypted_note_title">Encrypted Note</string>
+    <string name="edit_text_title">Enter your note title here..</string>
+    <string name="edit_text_body">Write here to note..</string>
+    <string name="create_note_label">Create a new note</string>
+    <string name="your_note_title">Your note</string>
+    <string name="save_note_desc">Save Note</string>
+    <string name="save_note_title">Save Note</string>
 </resources>

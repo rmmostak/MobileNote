@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
@@ -29,13 +30,13 @@ public class ViewNote extends AppCompatActivity {
         SQLiteDatabase database = helper.getWritableDatabase();
 
         Intent intent = getIntent();
-        String note_body = intent.getStringExtra("note_body");
-        String note_title = intent.getStringExtra("note_title");
+
         int noteId = intent.getIntExtra("note_id", 0);
 
+
         note_id = String.valueOf(noteId);
-        title.setText(note_title);
-        body.setText(note_body);
+        title.setText(helper.noteTitle(noteId));
+        body.setText(helper.noteBody(noteId));
 
     }
 
@@ -53,8 +54,10 @@ public class ViewNote extends AppCompatActivity {
         if (id == R.id.edit) {
 
             title.setFocusableInTouchMode(true);
+            title.requestFocus();
 
             body.setFocusableInTouchMode(true);
+            title.requestFocus();
 
             return false;
         }
@@ -67,10 +70,25 @@ public class ViewNote extends AppCompatActivity {
             String stTitle = title.getText().toString().trim();
             String stBody = body.getText().toString().trim();
 
-            int check = helper.updateNote(note_id, date, time, stTitle, stBody);
-            if (check > -1) {
-                startActivity(new Intent(ViewNote.this, MainActivity.class));
+            if (!stTitle.equals("")) {
+
+                if (!stBody.equals("")) {
+
+                    int check = helper.updateNote(note_id, date, time, stTitle, stBody);
+                    if (check > -1) {
+                        startActivity(new Intent(ViewNote.this, MainActivity.class));
+                    }
+
+                } else {
+                    body.setError("You have to add something!!");
+                    body.requestFocus();
+                }
+
+            } else {
+                title.setError("Please enter a note title!");
+                title.requestFocus();
             }
+
 
             return false;
         }

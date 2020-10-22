@@ -24,9 +24,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + " ( " + ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + DATE + " VARCHAR(12), " + TIME + " VARCHAR(10), " + TITLE + " VARCHAR(100), " + BODY + " VARCHAR(1000) );";
     private static final String DROP_TABLE = "DROP TABLE IF EXISTS " + TABLE_NAME;
-    private static final String SELECT_NOTE = "SELECT * FROM " + TABLE_NAME+" ORDER BY "+ID+" DESC";
-    private static final String SELECT_TITLE="SELECT "+TITLE+" FROM "+TABLE_NAME+" WHERE id= "+ID;
-    private static final String SELECT_BODY="SELECT "+BODY+" FROM "+TABLE_NAME+" WHERE id = "+ID;
+    private static final String SELECT_NOTE = "SELECT * FROM " + TABLE_NAME + " ORDER BY " + ID + " DESC";
 
     private Context context;
 
@@ -41,10 +39,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         try {
 
             sqLiteDatabase.execSQL(CREATE_TABLE);
-            Toast.makeText(context, "Database created successfully!", Toast.LENGTH_SHORT).show();
 
         } catch (Exception e) {
-            Toast.makeText(context, "Exception: " + e, Toast.LENGTH_LONG).show();
+            Toast.makeText(context, "Error: " + e, Toast.LENGTH_LONG).show();
         }
 
     }
@@ -55,11 +52,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         try {
 
             sqLiteDatabase.execSQL(DROP_TABLE);
-            Toast.makeText(context, "Table upgraded successfully!", Toast.LENGTH_SHORT).show();
             onCreate(sqLiteDatabase);
 
         } catch (Exception e) {
-            Toast.makeText(context, "Exception: " + e, Toast.LENGTH_LONG).show();
+            Toast.makeText(context, "Error: " + e, Toast.LENGTH_LONG).show();
         }
 
     }
@@ -79,13 +75,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
     public List<Model> noteList() {
-        List<Model> models=new ArrayList<>();
-        SQLiteDatabase sqLiteDatabase=this.getWritableDatabase();
-        Cursor cursor=sqLiteDatabase.rawQuery(SELECT_NOTE, null);
+        List<Model> models = new ArrayList<>();
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+        Cursor cursor = sqLiteDatabase.rawQuery(SELECT_NOTE, null);
 
         if (cursor.moveToFirst()) {
             do {
-                Model model=new Model();
+                Model model = new Model();
 
                 model.setId(cursor.getInt(cursor.getColumnIndex(ID)));
                 model.setDate(cursor.getString(cursor.getColumnIndex(DATE)));
@@ -101,18 +97,28 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return models;
     }
 
-    public String noteTitle(String id) {
-        SQLiteDatabase database=this.getWritableDatabase();
-        Cursor cursor= database.rawQuery(SELECT_TITLE, null);
+    public String noteTitle(int id) {
+        SQLiteDatabase database = this.getWritableDatabase();
+        Cursor cursor = database.rawQuery("SELECT * FROM " + TABLE_NAME + " WHERE " + ID + " = " + id, null);
 
-        return cursor.getString(cursor.getColumnIndex(TITLE));
+        String result = "";
+        if (cursor.moveToFirst()) {
+            result = cursor.getString(cursor.getColumnIndex(TITLE));
+        }
+
+        return result;
     }
 
-    public String noteBody(String id) {
-        SQLiteDatabase database=this.getWritableDatabase();
-        Cursor cursor= database.rawQuery(SELECT_BODY, null);
+    public String noteBody(int id) {
+        SQLiteDatabase database = this.getWritableDatabase();
+        Cursor cursor = database.rawQuery("SELECT * FROM " + TABLE_NAME + " WHERE " + ID + " = " + id, null);
 
-        return cursor.getString(cursor.getColumnIndex(BODY));
+        String result = "";
+        if (cursor.moveToFirst()) {
+            result = cursor.getString(cursor.getColumnIndex(BODY));
+        }
+
+        return result;
     }
 
     public int updateNote(String id, String date, String time, String title, String body) {
@@ -126,11 +132,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(TITLE, title);
         values.put(BODY, body);
 
-        return sqLiteDatabase.update(TABLE_NAME, values, ID+" = ?", new String[]{id});
+        return sqLiteDatabase.update(TABLE_NAME, values, ID + " = ?", new String[]{id});
     }
 
     public int deleteNote(String id) {
-        SQLiteDatabase database=this.getWritableDatabase();
-        return database.delete(TABLE_NAME, ID+" = ?", new String[]{id});
+        SQLiteDatabase database = this.getWritableDatabase();
+        return database.delete(TABLE_NAME, ID + " = ?", new String[]{id});
     }
 }

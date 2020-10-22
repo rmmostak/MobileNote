@@ -5,27 +5,30 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:layout_margin="10dp"
     android:weightSum="10"
     tools:context=".ViewNote">
 
     <EditText
         android:id="@+id/noteTitle"
-        android:hint="Enter your not title here.."
+        android:hint="@string/edit_text_title"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_margin="10dp"
+        android:padding="5dp"
+        android:inputType="text"
         android:focusable="false"
         android:textAppearance="@style/TextAppearance.AppCompat.Title"
         android:layout_weight="1"/>
 
     <com.rmproduct.mobilenote.LinedEditText
         android:id="@+id/noteBody"
-        android:layout_weight="8"
-        android:hint="Write here to note.."
+        android:layout_weight="9"
+        android:hint="@string/edit_text_body"
         android:lines="15"
         android:lineHeight="30dp"
         android:focusable="false"
-        android:layout_margin="10dp"
+        android:layout_marginTop="10dp"
+        android:padding="5dp"
         android:gravity="top"
         android:layout_width="match_parent"
         android:layout_height="0dp" />

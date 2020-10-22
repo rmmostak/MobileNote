@@ -7,6 +7,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.icu.text.TimeZoneFormat;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -21,7 +23,6 @@ import java.util.Locale;
 public class MakeNote extends AppCompatActivity {
 
     private EditText noteTitle, noteBody;
-    private Button saveNote;
     private DatabaseHelper databaseHelper;
 
     @Override
@@ -31,12 +32,11 @@ public class MakeNote extends AppCompatActivity {
 
         noteTitle = findViewById(R.id.noteTitle);
         noteBody = findViewById(R.id.noteBody);
-        saveNote = findViewById(R.id.saveNote);
 
         databaseHelper = new DatabaseHelper(this);
         SQLiteDatabase database = databaseHelper.getWritableDatabase();
 
-        saveNote.setOnClickListener(new View.OnClickListener() {
+        /*saveNote.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -70,7 +70,7 @@ public class MakeNote extends AppCompatActivity {
                 }
             }
 
-        });
+        });*/
     }
 
     public String getDate() {
@@ -87,5 +87,49 @@ public class MakeNote extends AppCompatActivity {
         String strTime = formatter.format(date);
 
         return strTime;
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.save_note, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        int id = item.getItemId();
+
+        if (id == R.id.saveNote) {
+
+            String title = noteTitle.getText().toString().trim();
+            String body = noteBody.getText().toString().trim();
+            String time = getTime();
+            String date = getDate();
+
+            if (!TextUtils.isEmpty(title)) {
+
+                if (!TextUtils.isEmpty(body)) {
+
+                    long row = databaseHelper.insertNote(date, time, title, body);
+
+                    if (row == -1) {
+                        Toast.makeText(getApplicationContext(), "Data insertion failed!", Toast.LENGTH_LONG).show();
+                    } else {
+                        startActivity(new Intent(MakeNote.this, MainActivity.class));
+                    }
+
+                } else {
+                    noteBody.setError("You have to add something!!");
+                    noteBody.requestFocus();
+                }
+
+            } else {
+                noteTitle.setError("Please enter a note title!");
+                noteTitle.requestFocus();
+            }
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }

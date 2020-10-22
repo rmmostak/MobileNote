@@ -9,11 +9,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ViewNote"
-            android:parentActivityName=".MainActivity"
-            />
-        <activity android:name=".MakeNote"
-            android:parentActivityName=".MainActivity"/>
+        <activity
+            android:name=".ViewNote"
+            android:label="@string/your_note_title"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".MakeNote"
+            android:label="@string/create_note_label"
+            android:parentActivityName=".MainActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
