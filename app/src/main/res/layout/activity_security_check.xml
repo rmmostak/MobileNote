@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".LockNote.SecurityCheck">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:padding="5dp"
+        android:text="Check your authenticity"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:dividerPadding="5dp"
+        android:layout_marginTop="40dp"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        app:passwordToggleEnabled="true">
+
+        <EditText
+            android:id="@+id/pass1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusable="true"
+            android:gravity="top"
+            android:hint="Password"
+            android:includeFontPadding="true"
+            android:inputType="textPassword"
+            android:padding="5dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/inputLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:dividerPadding="5dp"
+        android:visibility="gone"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        app:passwordToggleEnabled="true">
+
+        <EditText
+            android:id="@+id/pass2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusable="true"
+            android:gravity="top"
+            android:visibility="gone"
+            android:hint="Confirm Password"
+            android:includeFontPadding="true"
+            android:inputType="textPassword"
+            android:padding="5dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/warning"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="#FF0000" />
+
+    <Button
+        android:id="@+id/next"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_margin="15dp"
+        android:background="@color/colorAccent"
+        android:padding="5dp"
+        android:text="Next"
+        android:textColor="#ffffff"
+        android:textStyle="bold" />
+
+</LinearLayout>

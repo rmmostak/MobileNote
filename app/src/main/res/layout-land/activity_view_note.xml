@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:layout_margin="10dp"
     android:weightSum="10"
-    tools:context=".ViewNote">
+    tools:context=".MobileNote.ViewNote">
 
     <EditText
         android:id="@+id/noteTitle"
@@ -20,7 +20,7 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Title"
         android:layout_weight="2"/>
 
-    <com.rmproduct.mobilenote.LinedEditText
+    <com.rmproduct.locknote.LinedEditText
         android:id="@+id/noteBody"
         android:layout_weight="8"
         android:hint="@string/edit_text_body"

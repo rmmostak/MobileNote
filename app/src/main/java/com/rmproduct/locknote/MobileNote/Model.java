@@ -1,4 +1,4 @@
-package com.rmproduct.mobilenote;
+package com.rmproduct.locknote.MobileNote;
 
 public class Model {
 
@@ -9,6 +9,14 @@ public class Model {
     private int id;
 
     public Model(String date, String time, String title, String body, int id) {
+        this.date = date;
+        this.time = time;
+        this.title = title;
+        this.body = body;
+        this.id = id;
+    }
+
+    public Model(String noteID, String date, String time, String title, String body, int id) {
         this.date = date;
         this.time = time;
         this.title = title;

@@ -1,22 +1,20 @@
-package com.rmproduct.mobilenote;
+package com.rmproduct.locknote.MobileNote;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
-import android.icu.text.TimeZoneFormat;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import java.text.DateFormat;
+import com.rmproduct.locknote.DatabaseHelper;
+import com.rmproduct.locknote.R;
+
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 

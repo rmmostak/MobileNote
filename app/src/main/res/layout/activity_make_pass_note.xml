@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="10dp"
+    android:orientation="vertical"
+    android:weightSum="10"
+    tools:context=".LockNote.MakePassNote">
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:dividerPadding="5dp"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:layout_margin="5dp"
+        android:paddingBottom="5dp"
+        app:passwordToggleEnabled="true">
+
+        <EditText
+            android:id="@+id/passTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="top"
+            android:hint="Note Title"
+            android:includeFontPadding="true"
+            android:inputType="text"
+            android:padding="5dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:dividerPadding="5dp"
+        android:layout_margin="5dp"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        app:passwordToggleEnabled="true">
+
+        <EditText
+            android:id="@+id/passUID"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="top"
+            android:hint="User ID"
+            android:includeFontPadding="true"
+            android:inputType="textPassword"
+            android:padding="5dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:dividerPadding="5dp"
+        android:layout_margin="5dp"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:paddingBottom="5dp"
+        app:passwordToggleEnabled="true">
+
+        <EditText
+            android:id="@+id/passPass"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="top"
+            android:hint="Password"
+            android:includeFontPadding="true"
+            android:inputType="textPassword"
+            android:maxLines="5"
+            android:padding="5dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+<!--
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:text="Password"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+
+        <ImageButton
+            android:id="@+id/visible"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:background="#00000000"
+            android:padding="5dp" />
+
+    </RelativeLayout>
+
+    <locknoteinedEditText
+        android:id="@+id/password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="top"
+        android:hint="Type your password..."
+        android:lines="5"
+        android:padding="5dp" />
+
+    <EditText
+        android:id="@+id/ids"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="top"
+        android:hint="Type your password..."
+        android:lines="5"
+        android:padding="5dp" />
+-->
+</LinearLayout>

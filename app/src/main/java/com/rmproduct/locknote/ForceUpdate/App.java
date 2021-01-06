@@ -1,4 +1,4 @@
-package com.rmproduct.mobilenote;
+package com.rmproduct.locknote.ForceUpdate;
 
 import android.app.Application;
 import android.util.Log;

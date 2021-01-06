@@ -1,4 +1,4 @@
-package com.rmproduct.mobilenote;
+package com.rmproduct.locknote.ForceUpdate;
 
 import android.content.Context;
 import android.content.pm.PackageManager;
@@ -8,6 +8,7 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
+import com.rmproduct.locknote.MobileNote.HomePage;
 
 public class ForceUpdateChecker {
 
@@ -67,13 +68,13 @@ public class ForceUpdateChecker {
     public static class Builder {
 
         private Context context;
-        private MainActivity onUpdateNeededListener;
+        private HomePage onUpdateNeededListener;
 
         public Builder(Context context) {
             this.context = context;
         }
 
-        public Builder onUpdateNeeded(MainActivity onUpdateNeededListener) {
+        public Builder onUpdateNeeded(HomePage onUpdateNeededListener) {
             this.onUpdateNeededListener = onUpdateNeededListener;
             return this;
         }

@@ -1,4 +1,4 @@
-package com.rmproduct.mobilenote;
+package com.rmproduct.locknote;
 
 import org.junit.Test;
 

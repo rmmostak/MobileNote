@@ -1,4 +1,4 @@
-package com.rmproduct.mobilenote;
+package com.rmproduct.locknote;
 
 import android.content.Context;
 
@@ -22,6 +22,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.rmproduct.mobilenote", appContext.getPackageName());
+        assertEquals("com.rmproduct.locknote", appContext.getPackageName());
     }
 }

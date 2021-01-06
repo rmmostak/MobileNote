@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.rmproduct.mobilenote">
+    package="com.rmproduct.locknote">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
     <application
+        android:name=".ForceUpdate.App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -10,20 +15,48 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".ViewNote"
-            android:label="@string/your_note_title"
-            android:parentActivityName=".MainActivity" />
+            android:name=".MakeOnline.Authentication"
+            android:label="Authentication Checking"
+            android:parentActivityName=".MobileNote.HomePage" />
         <activity
-            android:name=".MakeNote"
-            android:label="@string/create_note_label"
-            android:parentActivityName=".MainActivity" />
-        <activity android:name=".MainActivity">
+            android:name=".AboutActivity"
+            android:label="About App"
+            android:parentActivityName=".MobileNote.HomePage" />
+        <activity
+            android:name=".MobileNote.HomePage"
+            android:label="@string/title_activity_home_page"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".LockNote.SecurityCheck"
+            android:label="@string/security_check"
+            android:parentActivityName=".MobileNote.HomePage" />
+        <activity
+            android:name=".LockNote.MakePassNote"
+            android:label="@string/create_a_secret_code"
+            android:parentActivityName=".LockNote.PasswordActivity" />
+        <activity
+            android:name=".LockNote.PassView"
+            android:label="@string/pass_view"
+            android:parentActivityName=".LockNote.PasswordActivity" />
+        <activity
+            android:name=".LockNote.PasswordActivity"
+            android:label="@string/pass_book"
+            android:parentActivityName=".MobileNote.HomePage" />
+        <activity
+            android:name=".MobileNote.ViewNote"
+            android:label="@string/your_note_title"
+            android:parentActivityName=".MobileNote.HomePage" />
+        <activity
+            android:name=".MobileNote.MakeNote"
+            android:label="@string/create_note_label"
+            android:parentActivityName=".MobileNote.MainActivity" />
+        <activity android:name=".MobileNote.MainActivity" />
     </application>
 
 </manifest>

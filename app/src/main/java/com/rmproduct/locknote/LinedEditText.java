@@ -1,4 +1,4 @@
-package com.rmproduct.mobilenote;
+package com.rmproduct.locknote;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -16,6 +16,7 @@ public class LinedEditText extends EditText {
         linePaint = new Paint();
         linePaint.setColor(Color.BLUE);
         linePaint.setStyle(Paint.Style.STROKE);
+        linePaint.setTextSize(20);
     }
 
     public LinedEditText(Context context, AttributeSet attrs) {
@@ -28,7 +29,8 @@ public class LinedEditText extends EditText {
 
         int firstLineY = getLineBounds(0, bounds);
         int lineHeight = getLineHeight();
-        int totalLines = Math.max(getLineCount(), getHeight() / lineHeight);
+
+        int totalLines = Math.max(getLineCount(), (getHeight()) / lineHeight);
 
         for (int i = 0; i < totalLines; i++) {
             int lineY = firstLineY + i * lineHeight;

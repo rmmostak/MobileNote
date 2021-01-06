@@ -1,24 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="10dp"
     android:orientation="vertical"
     android:weightSum="10"
-    tools:context=".MakeNote">
+    tools:context=".MobileNote.MakeNote">
 
-    <EditText
-        android:id="@+id/noteTitle"
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:hint="@string/edit_text_title"
-        android:inputType="text"
-        android:padding="5dp"
-        android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+        android:layout_height="wrap_content"
+        android:dividerPadding="5dp"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:paddingBottom="5dp"
+        app:passwordToggleEnabled="true">
 
-    <com.rmproduct.mobilenote.LinedEditText
+        <EditText
+            android:id="@+id/noteTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="top"
+            android:hint="Note Title"
+            android:includeFontPadding="true"
+            android:inputType="text"
+            android:padding="5dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.rmproduct.locknote.LinedEditText
         android:id="@+id/noteBody"
         android:layout_width="match_parent"
         android:layout_height="0dp"
