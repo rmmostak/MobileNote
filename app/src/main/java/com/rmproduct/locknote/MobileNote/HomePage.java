@@ -4,18 +4,24 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
-import androidx.core.view.GravityCompat;
 import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import android.view.MenuItem;
-
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -31,18 +37,6 @@ import com.rmproduct.locknote.LockNote.SecurityCheck;
 import com.rmproduct.locknote.MakeOnline.Authentication;
 import com.rmproduct.locknote.R;
 
-import androidx.drawerlayout.widget.DrawerLayout;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.DefaultItemAnimator;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-
-import android.view.Menu;
-import android.widget.TextView;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -51,8 +45,8 @@ public class HomePage extends AppCompatActivity
 
     private SwipeRefreshLayout refreshLayout;
     private TextView notice;
-    private RecyclerView recyclerView;
     private FloatingActionButton actionButton;
+    private RecyclerView recyclerView;
     private DatabaseHelper databaseHelper;
     private NoteAdapter adapter;
     private List<Model> modelList = new ArrayList<>();
@@ -60,7 +54,6 @@ public class HomePage extends AppCompatActivity
     private DatabaseReference reference;
     private FirebaseAuth firebaseAuth;
     private FirebaseUser firebaseUser;
-
 
 
     @Override
@@ -234,10 +227,12 @@ public class HomePage extends AppCompatActivity
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     Model model2 = snapshot.getValue(Model.class);
-                    Model model=new Model();
-                    if (model1.getId() != model2.getId()) {
-                        Model model3 = new Model(noteID, model.getDate(), model.getTime(), model.getTitle(), model.getBody(), model.getId());
-                        reference.setValue(model3);
+                    Model model = new Model();
+                    if (model != null && model2 != null) {
+                        if (model1.getId() != model2.getId()) {
+                            Model model3 = new Model(noteID, model.getDate(), model.getTime(), model.getTitle(), model.getBody(), model.getId());
+                            reference.setValue(model3);
+                        }
                     }
                 }
             }
