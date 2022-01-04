@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Lock Note</string>
+    <string name="app_name">Mobile Note</string>
     <string name="pass_note">PassNote</string>
     <string name="encrypted_note_title">Encrypted Note</string>
     <string name="edit_text_title">Enter your note title here..</string>
@@ -24,7 +24,6 @@
     <string name="menu_tools">Tools</string>
     <string name="menu_share">Share</string>
     <string name="menu_about">About</string>
-    <string name="title_activity_home_page">Lock Note</string>
     <string name="online_note_msg">Connect your app with server to save your data forever!!</string>
     <string name="welcome_notice">Welcome! Your are signed in! Keep making your note and secret note. Connect your phone to internet frequently and save your data to server automatically.  Thank for using this app!</string>
 </resources>

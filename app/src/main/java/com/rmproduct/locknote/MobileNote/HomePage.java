@@ -1,5 +1,6 @@
 package com.rmproduct.locknote.MobileNote;
 
+import android.app.ActivityOptions;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
@@ -8,8 +9,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,11 +26,8 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.rmproduct.locknote.AboutActivity;
 import com.rmproduct.locknote.DatabaseHelper;
 import com.rmproduct.locknote.ForceUpdate.ForceUpdateChecker;
@@ -50,11 +48,11 @@ public class HomePage extends AppCompatActivity
     private DatabaseHelper databaseHelper;
     private NoteAdapter adapter;
     private List<Model> modelList = new ArrayList<>();
+    private long backPressedTime;
 
     private DatabaseReference reference;
     private FirebaseAuth firebaseAuth;
     private FirebaseUser firebaseUser;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -114,17 +112,18 @@ public class HomePage extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
-        /*DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
+        if (backPressedTime + 2000 > System.currentTimeMillis()) {
+            moveTaskToBack(true);
+            android.os.Process.killProcess(android.os.Process.myPid());
+            System.exit(1);
             super.onBackPressed();
-        }*/
-        moveTaskToBack(true);
-        android.os.Process.killProcess(android.os.Process.myPid());
-        System.exit(1);
-        super.onBackPressed();
+            return;
+        } else {
+            Toast.makeText(getApplicationContext(), "Press Again to Exit!", Toast.LENGTH_SHORT).show();
+        }
+        backPressedTime = System.currentTimeMillis();
     }
+/*
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -140,6 +139,7 @@ public class HomePage extends AppCompatActivity
 
         return super.onOptionsItemSelected(item);
     }
+*/
 
     @Override
     public void onUpdateNeeded(final String updateUrl) {
@@ -180,8 +180,12 @@ public class HomePage extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_pass) {
-
-            startActivity(new Intent(HomePage.this, SecurityCheck.class));
+            Intent intent = new Intent(HomePage.this, SecurityCheck.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            ActivityOptions options = null;
+            options = ActivityOptions.makeCustomAnimation(getApplicationContext(), R.anim.fade_in, R.anim.fade_out);
+            startActivity(intent, options.toBundle());
 
         } else if (id == R.id.nav_online) {
 
@@ -216,7 +220,7 @@ public class HomePage extends AppCompatActivity
     protected void onStart() {
         super.onStart();
 
-        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        /*FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         String user = firebaseUser.toString();
         final DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
         final String noteID = reference.push().getKey();
@@ -241,6 +245,6 @@ public class HomePage extends AppCompatActivity
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
-        });
+        });*/
     }
 }
